@@ -8,6 +8,7 @@
 import UIKit
 
 protocol LoginViewDelegate: AnyObject {
+    func goToRegisterController()
 }
 
 class LoginView: UIView {
@@ -127,6 +128,8 @@ class LoginView: UIView {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Faça seu cadastro", for: .normal)
         button.setTitleColor(UIColor(hex: "A9A9A9") , for: .normal)
+        button.addTarget(nil, action: #selector(goToRegisterController), for: .touchUpInside)
+
         
         return button
     }()
@@ -251,5 +254,10 @@ extension LoginView {
             registerButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -60),
             registerButton.heightAnchor.constraint(equalToConstant: 40)
         ])
+    }
+    
+    // button action
+    @objc func goToRegisterController(sender: UIButton!) {
+        self.delegate?.goToRegisterController()
     }
 }
